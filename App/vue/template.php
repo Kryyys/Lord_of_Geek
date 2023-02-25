@@ -17,7 +17,7 @@
         <nav id="menu">
             <ul>
                 <li><a href="index.php?uc=accueil"> Accueil </a></li>
-                <li><a href="index.php?uc=touslesjeux&action=voirJeux"> Voir le catalogue de jeux </a></li>
+                <li><a href="index.php?uc=visite&action=voirJeux"> Voir le catalogue de jeux </a></li>
                 <li><a href="index.php?uc=panier&action=voirPanier"> Voir son panier </a></li>
 
                 <?php if (!isset($_SESSION['id'])) { ?>
@@ -39,7 +39,7 @@
             case 'accueil':
                 include 'App/vue/v_accueil.php';
                 break;
-            case 'touslesjeux':
+            case 'visite':
                 include("App/vue/v_jeux.php");
                 break;
             case 'panier':

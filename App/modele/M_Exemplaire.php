@@ -114,7 +114,7 @@ class M_Exemplaire
      * @param [type] $id
      * @return [type] tableau associatif
      */
-    public static function trouveUnJeu(int $id)
+    public static function trouveUnJeu(int $idJeu)
     {
         $sql = "SELECT * FROM exemplaires
                 JOIN etat ON etat_id = etat.id
@@ -123,12 +123,11 @@ class M_Exemplaire
                 JOIN tags ON tags_id = tags.id
                 WHERE exemplaires.id = :id";
 
-        $statement = AccesDonnees::prepare($sql);
-
-        $statement->bindParam(':id', $id, PDO::PARAM_INT);
-        $statement->execute();
-        $leJeu = $statement->fetch(PDO::FETCH_ASSOC);
-
+        $pdo = AccesDonnees::getPdo();
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', $idJeu, PDO::PARAM_INT);
+        $stmt->execute();
+        $leJeu = $stmt->fetch(PDO::FETCH_ASSOC);
         return $leJeu;
     }
 }

@@ -60,7 +60,7 @@
                 <p><?= $etat ?></p>
                 <p><?= "Prix : " . $prix . " Euros" ?>
                 <br>
-                <a href="index.php?uc=visite&action=J&id= <?= $id ?>" title="Voir le jeu">Voir le jeu </a>
+                <a href="index.php?uc=jeu&action=consulter&id= <?= $id ?>" title="Voir le jeu">Voir le jeu </a>
                 <a href="index.php?uc=visite&categorie=<?= $categorie ?>&jeu=<?= $id ?>&action=ajouterAuPanier">
                     <img src="public/images/mettrepanier.png" title="Ajouter au panier" class="add" />
                 </a>

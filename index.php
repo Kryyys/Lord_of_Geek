@@ -40,6 +40,9 @@ switch ($uc) {
     case 'administrer':
         include 'App/controleur/c_monCompte.php';
         break;
+    case 'jeu':
+        include('App/controleur/c_consultation.php');
+        break;
     default:
         break;
 }

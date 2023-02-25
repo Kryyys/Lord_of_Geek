@@ -39,9 +39,9 @@ switch ($action) {
         $jeu = filter_input(INPUT_GET, 'keywords');
         $lesJeux = M_Exemplaire::rechercherJeux($jeu);
         break;
-    case 'consulter':
-        $idDetail = filter_input(INPUT_GET, 'id');
-        $DetailJeu = M_Exemplaire::trouveUnJeu($idDetail);
+    case 'consulterJeu':
+        $idJeu = filter_input(INPUT_GET, 'id');
+        $unJeu = M_Exemplaire::trouveUnJeu($idJeu);
         break;
     default:
         $lesJeux = [];
