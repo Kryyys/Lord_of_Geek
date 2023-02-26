@@ -1,5 +1,11 @@
 <section id="visite">
     <aside id="categories">
+
+    <ul>
+        <li>    <a href="index.php?uc=visite&action=ordreAlpha">Trier par ordre Alphabétique</a></li>
+        <li>    <a href="index.php?uc=visite&action=prixCroissant">Trier par prix croissant</a></li>
+        <li>    <a href="index.php?uc=visite&action=prixDecroissant">Trier par prix décroissant</a></li>
+    </ul>
         <ul>
             <?php
             foreach ($lesCategories as $uneCategorie) {
@@ -44,6 +50,7 @@
     </aside>
 
     <section id="jeux">
+
         <?php
         foreach ($lesJeux as $unJeu) {
             $id = $unJeu['id'];

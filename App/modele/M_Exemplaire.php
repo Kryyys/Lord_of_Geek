@@ -22,11 +22,53 @@ class M_Exemplaire
         return $lesLignes;
     }
 
+        /**
+     * Trie les jeux par ordre alphabétique
+     * 
+     * @param $nomAlpha string
+     * @return un tableau associatif
+     */
+    public static function trierAlpha($nomAlpha)
+    {
+        $req = "SELECT * FROM exemplaires JOIN etat ON etat_id=etat.id ORDER BY nom";
+        $res = AccesDonnees::query($req);
+        $lesLignes = $res->fetchAll();
+        return $lesLignes;
+    }
+
+            /**
+     * Trie les jeux par ordre de prix croissant
+     * 
+     * @param $prixCroissant string
+     * @return un tableau associatif
+     */
+    public static function trierPrixCroissant($prixCroissant)
+    {
+        $req = "SELECT * FROM exemplaires JOIN etat ON etat_id=etat.id ORDER BY prix";
+        $res = AccesDonnees::query($req);
+        $lesLignes = $res->fetchAll();
+        return $lesLignes;
+    }
+
+            /**
+     * Trie les jeux par ordre de prix décroissant
+     * 
+     * @param $prixDecroissant string
+     * @return un tableau associatif
+     */
+    public static function trierPrixDecroissant($prixDecroissant)
+    {
+        $req = "SELECT * FROM exemplaires JOIN etat ON etat_id=etat.id ORDER BY prix DESC";
+        $res = AccesDonnees::query($req);
+        $lesLignes = $res->fetchAll();
+        return $lesLignes;
+    }
+
     /**
      * Retourne sous forme d'un tableau associatif tous les jeux de la
      * catégorie passée en argument
      *
-     * @param $idCategorie
+     * @param $idCategorie int
      * @return un tableau associatif
      */
     public static function trouveLesJeuxDeCategorie($idCategorie)
@@ -130,4 +172,5 @@ class M_Exemplaire
         $leJeu = $stmt->fetch(PDO::FETCH_ASSOC);
         return $leJeu;
     }
+
 }

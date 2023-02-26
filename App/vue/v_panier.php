@@ -16,7 +16,7 @@
                 ?>
             </a>
             <br>
-            <a href="index.php?uc=visite&action=consulter&id= <?= $id ?>" title="Voir le jeu">Voir le jeu </a>
+            <a href="index.php?uc=jeu&action=consulter&id= <?= $id ?>" title="Voir le jeu">Voir le jeu </a>
             <br>
             <a href="index.php?uc=panier&jeu=<?php echo $id ?>&action=supprimerUnJeu" onclick="return confirm('Voulez-vous vraiment retirer ce jeu ?');">
                 <img src="public/images/retirerpanier.png" TITLE="Retirer du panier" >

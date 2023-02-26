@@ -43,6 +43,19 @@ switch ($action) {
         $idJeu = filter_input(INPUT_GET, 'id');
         $unJeu = M_Exemplaire::trouveUnJeu($idJeu);
         break;
+    case 'ordreAlpha' :
+        $nomAlpha = filter_input(INPUT_GET, 'nom');
+        $lesJeux = M_Exemplaire::trierAlpha(($nomAlpha));
+        break;
+    case 'prixCroissant' :
+        $prixCroissant = filter_input(INPUT_GET, 'prix');
+        $lesJeux = M_Exemplaire::trierPrixCroissant(($prixCroissant));
+        break;
+    case 'prixDecroissant' :
+        $prixDecroissant = filter_input(INPUT_GET, 'prix');
+        $lesJeux = M_Exemplaire::trierPrixDecroissant(($prixDecroissant));
+        break;
+
     default:
         $lesJeux = [];
         break;
