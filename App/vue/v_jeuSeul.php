@@ -6,5 +6,4 @@
     <p>Prix <?= $unJeu['prix'] ?>€</p>
 </section>
 
-<?php var_dump ($unJeu); ?>
 

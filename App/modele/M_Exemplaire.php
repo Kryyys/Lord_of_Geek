@@ -166,10 +166,10 @@ class M_Exemplaire
                 WHERE exemplaires.id = :id";
 
         $pdo = AccesDonnees::getPdo();
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':id', $idJeu, PDO::PARAM_INT);
-        $stmt->execute();
-        $leJeu = $stmt->fetch(PDO::FETCH_ASSOC);
+        $statement = $pdo->prepare($sql);
+        $statement->bindParam(':id', $idJeu, PDO::PARAM_INT);
+        $statement->execute();
+        $leJeu = $statement->fetch(PDO::FETCH_ASSOC);
         return $leJeu;
     }
 
