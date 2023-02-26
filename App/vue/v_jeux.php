@@ -7,45 +7,15 @@
         <li>    <a href="index.php?uc=visite&action=prixDecroissant">Trier par prix décroissant</a></li>
     </ul>
         <ul>
-            <?php
-            foreach ($lesCategories as $uneCategorie) {
-                $idCategorie = $uneCategorie['id'];
-                $libCategorie = $uneCategorie['nom'];
-            ?>
-                <li>
-                    <a href=index.php?uc=visite&categorie=<?php echo $idCategorie ?>&action=voirCategorie><?php echo $libCategorie ?></a>
-                </li>
-            <?php
-            }
-            ?>
+        <li>    <a href="index.php?uc=categorie&action=voirJeux">Jeux par Catégorie</a></li>
         </ul>
 
         <ul>
-            <?php
-            foreach ($lesConsoles as $uneConsole) {
-                $idConsole = $uneConsole['id'];
-                $libConsole = $uneConsole['nom_console'];
-            ?>
-                <li>
-                    <a href=index.php?uc=visite&console=<?php echo $idConsole ?>&action=voirConsole><?php echo $libConsole ?></a>
-                </li>
-            <?php
-            }
-            ?>
+        <li>    <a href="index.php?uc=console&action=voirJeux">Jeux par Console</a></li>
         </ul>
 
         <ul>
-            <?php
-            foreach ($lesTags as $unTag) {
-                $idTag = $unTag['id'];
-                $libTag = $unTag['nom_tag'];
-            ?>
-                <li>
-                    <a href=index.php?uc=visite&console=<?php echo $idTag ?>&action=voirConsole><?php echo $libTag ?></a>
-                </li>
-            <?php
-            }
-            ?>
+        <li>    <a href="index.php?uc=tag&action=voirJeux">Jeux par Tag</a></li>
         </ul>
     </aside>
 

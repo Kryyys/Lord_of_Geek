@@ -60,6 +60,15 @@
             case 'jeu':
                 include("App/vue/v_jeuSeul.php");
                 break;
+            case 'categorie':
+                include("App/vue/v_categorie.php");
+                break;
+            case 'console':
+                include("App/vue/v_console.php");
+                break;
+            case 'tag':
+                include("App/vue/v_tag.php");
+                break;
             default:
                 break;
         }

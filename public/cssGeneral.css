@@ -94,14 +94,19 @@ header img{
 }
 
 #visite section {
-    width: fit-content;
+    width: 1700px;
     display: flex;
+
 }
 
 #visite section article {
     margin: 5px;
     padding: 5px;
     width: 200px;
+}
+
+#jeux {
+    width: 1200px;
 }
 
 

@@ -43,6 +43,15 @@ switch ($uc) {
     case 'jeu':
         include('App/controleur/c_consultation.php');
         break;
+    case 'categorie':
+        include('App/controleur/c_consultation.php');
+        break;
+    case 'console':
+        include('App/controleur/c_consultation.php');
+        break;
+    case 'tag':
+        include('App/controleur/c_consultation.php');
+        break;
     default:
         break;
 }
