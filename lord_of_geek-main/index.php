@@ -2,7 +2,6 @@
 
 session_start();
 
-
 // Pour afficher les erreurs PHP
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
@@ -12,28 +11,46 @@ require("./util/fonctions.inc.php");
 require('./util/validateurs.inc.php');
 require("./App/modele/AccesDonnees.php");
 
+$sessionClient = [];
+if (!empty($_SESSION['id'])) {
+    $sessionClient = $_SESSION['id'];
+}
 
 $uc = filter_input(INPUT_GET, 'uc'); // Use Case
 $action = filter_input(INPUT_GET, 'action'); // Action
 initPanier();
 
+
 if (!$uc) {
     $uc = 'accueil';
 }
 
-// Controleur principale
+
+// Controleur principal
 switch ($uc) {
-    case 'visite' :
+    case 'visite':
         include 'App/controleur/c_consultation.php';
         break;
-    case 'panier' :
+    case 'panier':
         include 'App/controleur/c_gestionPanier.php';
         break;
     case 'commander':
         include 'App/controleur/c_passerCommande.php';
         break;
-    case 'administrer' :
+    case 'administrer':
         include 'App/controleur/c_monCompte.php';
+        break;
+    case 'jeu':
+        include('App/controleur/c_consultation.php');
+        break;
+    case 'categorie':
+        include('App/controleur/c_consultation.php');
+        break;
+    case 'console':
+        include('App/controleur/c_consultation.php');
+        break;
+    case 'tag':
+        include('App/controleur/c_consultation.php');
         break;
     default:
         break;
@@ -41,4 +58,3 @@ switch ($uc) {
 
 
 include("App/vue/template.php");
-

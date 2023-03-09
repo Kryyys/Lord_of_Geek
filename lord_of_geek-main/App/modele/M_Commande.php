@@ -1,11 +1,14 @@
 <?php
 
+include_once "AccesDonnees.php";
+
 /**
  * Requetes sur les commandes
  *
  * @author Loic LOG
  */
-class M_Commande {
+class M_Commande
+{
 
     /**
      * Crée une commande
@@ -21,13 +24,16 @@ class M_Commande {
      * @param $listJeux
 
      */
-    public static function creerCommande($nom, $rue, $cp, $ville, $mail, $listJeux) {
-        $req = "insert into commandes(nomPrenomClient, adresseRueClient, cpClient, villeClient, mailClient) values ('$nom','$rue','$cp','$ville','$mail')";
-        $res = AccesDonnees::exec($req);
+    public static function creerCommande($listJeux, $id)
+    {
+        $sql = "INSERT INTO commandes(client_id) VALUES (:client_id)";
+        $statement = AccesDonnees::prepare($sql);
+        $statement->bindParam(":client_id", $id);
+        $statement->execute();
         $idCommande = AccesDonnees::getPdo()->lastInsertId();
         foreach ($listJeux as $jeu) {
-            $req = "insert into lignes_commande(commande_id, exemplaire_id) values ('$idCommande','$jeu')";
-            $res = AccesDonnees::exec($req);
+            $sql = "INSERT INTO lignes_commande(commande_id, exemplaire_id) VALUES ('$idCommande','$jeu')";
+            $statement = AccesDonnees::exec($sql);
         }
     }
 
@@ -42,12 +48,16 @@ class M_Commande {
      * @param $mail : chaîne
      * @return : array
      */
-    public static function estValide($nom, $rue, $ville, $cp, $mail) {
+    public static function estValide($nom, $prenom, $adresse, $ville, $cp, $mail)
+    {
         $erreurs = [];
         if ($nom == "") {
             $erreurs[] = "Il faut saisir le champ nom";
         }
-        if ($rue == "") {
+        if ($prenom == "") {
+            $erreurs[] = "Il faut saisir le champ nom";
+        }
+        if ($adresse == "") {
             $erreurs[] = "Il faut saisir le champ rue";
         }
         if ($ville == "") {
@@ -66,4 +76,43 @@ class M_Commande {
         return $erreurs;
     }
 
+    // public static function afficherCommande($id)
+    // {
+    //     $pdo = Accesdonnees::getPdo();
+    //     $stmt = $pdo->prepare("SELECT exemplaires.*, commandes.*, client.*
+    //     FROM client
+    //     JOIN commandes ON commandes.client_id = client.id
+    //     JOIN lignes_commande ON lignes_commande.commande_id = commandes.id
+    //     JOIN exemplaires ON exemplaires.id = lignes_commande.exemplaire_id
+    //     WHERE client.id = :clientId
+    //     ORDER BY commandes.id DESC");
+    //     $stmt->bindParam(":clientId", $id);
+    //     $stmt->execute();
+    //     $lesCommandes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //     return $lesCommandes;
+    // }
+
+    // * @param [type] $id_utilisateur
+    // * @return $lesCommandes
+    // */
+    public static function afficherCommande($idClient)
+    {
+        try {
+        $pdo = Accesdonnees::getPdo();
+        $stmt = $pdo->prepare("SELECT exemplaires.nom, console.nom_console, exemplaires.prix, commandes.id
+            FROM commandes
+            JOIN lignes_commande ON lignes_commande.commande_id = commandes.id
+            JOIN exemplaires ON exemplaires.id = lignes_commande.exemplaire_id
+            JOIN console ON console.id = exemplaires.console_id
+            WHERE client_id = :id_client
+            ORDER BY commandes.id DESC");
+        $stmt->bindParam(":id_client", $idClient);
+        $stmt->execute();
+        $lesCommandes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $lesCommandes;
+    } catch (\Throwable $th) {
+        var_dump($th);
+    }
+    return true;
+    }
 }

@@ -1,35 +1,26 @@
 ﻿<section id="creationCommande">
+    
+    <?php if (!isset($_SESSION['id'])) {  ?>
+
     <form method="POST" action="index.php?uc=commander&action=confirmerCommande">
-        <fieldset>
-            <legend>Commande</legend>
-            <p>
-                <label for="nom">Nom Prénom*</label>
-                <input id="nom" type="text" name="nom" value="<?= $nom ?>" size="30" maxlength="45">
-            </p>
-            <p>
-                <label for="rue">rue*</label>
-                <input id="rue" type="text" name="rue" value="<?= $rue ?>" size="30" maxlength="45">
-            </p>
-            <p>
-                <label for="cp">code postal* </label>
-                <input id="cp" type="text" name="cp" value="<?= $cp ?>" size="10" maxlength="10">
-            </p>
-            <p>
-                <label for="ville">ville* </label>
-                <input id="ville" type="text" name="ville"  value="<?= $ville ?>" size="5" maxlength="5">
-            </p>
-            <p>
-                <label for="mail">mail* </label>
-                <input id="mail" type="text"  name="mail" value="<?= $mail ?>" size ="25" maxlength="25">
-            </p> 
-            <p>
-                <input type="submit" value="Valider" name="valider">
-                <input type="reset" value="Annuler" name="annuler"> 
-            </p>
+        <ul>
+            <li>Pseudo : <?= $_SESSION['pseudo'] ?></li>
+            <li>Nom : <?= $client['nom'] ?></li>
+            <li>Prenom : <?= $client['prenom'] ?></li>
+            <li>Adresse : <?= $client['adresse'] ?></li>
+            <li>Ville : <?= $client['cp'] . "  " . $client['ville'] ?></li>
+            <li>Mail : <?= $client['mail'] ?></li>
+        </ul>
+
+        <br>
+
+        <p>Est-ce bien vos coordonnées ? </p>
+
+        <input type="submit" value="Confirmer le commande" name="Confirmer la commande">
+        <br>
+        <p><a href="index.php?uc=administrer&action=compte">Non, je souhaite modifier mes coordonnées.</a></p>
     </form>
 </section>
 
-
-
-
-
+<?php
+    }
